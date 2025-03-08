@@ -48,3 +48,10 @@ modal.on('disconnect', () => {
     console.log('Disconnected');
     alert('Wallet disconnected');
 });
+// Trigger modal programaticaly
+// Add this code inside `main.js` file at the end of the code file
+const openConnectModalBtn = document.getElementById('open-connect-modal')
+const openNetworkModalBtn = document.getElementById('open-network-modal')
+
+openConnectModalBtn.addEventListener('click', () => modal.open())
+openNetworkModalBtn.addEventListener('click', () => modal.open({ view: 'Networks' }))
