@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Connect with AppKit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Button to trigger wallet connection -->
+    <button id="connectButton">Connect Wallet</button>
+
+    <!-- Load AppKit, Ethers adapter, and Ethers v5 -->
+    <script src="https://unpkg.com/@reown/appkit@latest/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/@reown/appkit-adapter-ethers5@latest/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/ethers@5/dist/ethers.umd.min.js"></script>
+
+    <script>
+        // 1. Use your provided projectId
+        const projectId = 'd708272626c65a90e5261aa6006da4c1';
+
+        // 2. Define networks (Arbitrum and Mainnet from your code)
+        const networks = [
+            ReownAppKit.networks.arbitrum,
+            ReownAppKit.networks.mainnet
+        ];
+
+        // 3. Metadata for your app
+        const metadata = {
+            name: 'Doji',
+            description: 'AppKit Example',
+            url: 'https://<your-username>.github.io/<repo-name>', // Replace with your GitHub Pages URL
+            icons: ['https://assets.reown.com/reown-profile-pic.png']
+        };
+
+        // 4. Initialize AppKit with your projectId
+        const appKit = ReownAppKit.createAppKit({
+            adapters: [new ReownAppKitAdapterEthers5.Ethers5Adapter()],
+            networks,
+            metadata,
+            projectId: projectId, // Explicitly using your projectId
+            features: {
+                analytics: true // Optional, as per your original code
+            }
+        });
+
+        // 5. Connect button functionality
+        const connectButton = document.getElementById('connectButton');
+        connectButton.addEventListener('click', async () => {
+            try {
+                await appKit.open(); // Opens the wallet modal
+                console.log('Wallet connection initiated');
+            } catch (error) {
+                console.error('Failed to connect wallet:', error);
+                alert('Connection failed. Check console for details.');
+            }
+        });
+
+        // 6. Listen for successful connection
+        appKit.on('connect', (event) => {
+            console.log('Wallet connected:', event);
+            alert('Wallet connected successfully!');
+        });
+
+        // Optional: Handle disconnection
+        appKit.on('disconnect', () => {
+            console.log('Wallet disconnected');
+            alert('Wallet disconnected');
+        });
+    </script>
+</body>
+</html>
