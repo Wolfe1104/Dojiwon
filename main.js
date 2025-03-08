@@ -9,7 +9,7 @@ const projectId = 'd708272626c65a90e5261aa6006da4c1'
 const metadata = {
   name: 'AppKit',
   description: 'AppKit Example',
-  url: 'https://wolfe1104.github.io/Dojiwon/index.html', // origin must match your domain & subdomain
+  url: 'https://wolfe1104.github.io/Dojiwon/', // origin must match your domain & subdomain
   icons: ['https://avatars.githubusercontent.com/u/179229932']
 }
 
