@@ -1,64 +1,45 @@
 // 1. Project ID
 const projectId = 'd708272626c65a90e5261aa6006da4c1';
 
-// 2. Networks
+// 2. Metadata
+const metadata = {
+    name: 'Doji',
+    description: 'AppKit Example',
+    url: 'https://wolfe1104.github.io/Dojiwon/', // Updated to your GitHub Pages URL
+    icons: ['https://avatars.githubusercontent.com/u/179229932']
+};
+
+// 3. Networks
 const networks = [
     ReownAppKit.networks.mainnet,
     ReownAppKit.networks.arbitrum
 ];
 
-// 3. Metadata
-const metadata = {
-    name: 'Doji',
-    description: 'AppKit Example',
-    url: 'https://wolfe1104.github.io/Dojiwon/index.html',
-    icons: ['https://avatars.githubusercontent.com/u/179229932']
-};
-
-// 4. Custom Wagmi Adapter (since no direct CDN for @reown/appkit-adapter-wagmi)
-const wagmiAdapter = {
-    name: 'WagmiAdapter',
+// 4. Custom Ethers Adapter (since no direct CDN for @reown/appkit-adapter-ethers)
+const ethersAdapter = {
+    name: 'EthersAdapter',
     provider: null,
     connect: async () => {
         if (window.ethereum) {
-            const provider = window.ethereum;
-            await provider.request({ method: 'eth_requestAccounts' });
-            wagmiAdapter.provider = provider;
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            await provider.send('eth_requestAccounts', []);
+            ethersAdapter.provider = provider;
             return provider;
         }
         throw new Error('No Ethereum provider found (e.g., MetaMask)');
-    },
-    switchNetwork: async (networkId) => {
-        if (!wagmiAdapter.provider) throw new Error('Not connected');
-        await wagmiAdapter.provider.request({
-            method: 'wallet_switchEthereumChain',
-            params: [{ chainId: `0x${Number(networkId).toString(16)}` }]
-        });
     }
 };
 
-// 5. Create the modal
+// 5. Create AppKit instance
 const modal = ReownAppKit.createAppKit({
-    adapters: [wagmiAdapter],
+    adapters: [ethersAdapter],
     networks: networks,
     metadata: metadata,
     projectId: projectId,
     features: { analytics: true }
 });
 
-// 6. Button event listeners
-const openConnectModalBtn = document.getElementById('open-connect-modal');
-const openNetworkModalBtn = document.getElementById('open-network-modal');
-
-openConnectModalBtn.addEventListener('click', () => {
-    modal.open();
-});
-
-openNetworkModalBtn.addEventListener('click', () => {
-    modal.open({ view: 'Networks' });
-});
-
-// 7. Event listeners for connection status
+// Optional: Event listeners for debugging
 modal.on('connect', (event) => {
     console.log('Connected:', event);
     alert('Wallet connected!');
