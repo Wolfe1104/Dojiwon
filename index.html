@@ -1,14 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>HTML Example</title>
-  </head>
-  <  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Connect with AppKit - Dojiwon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            flex-direction: column;
+            gap: 20px;
+        }
+        appkit-button, appkit-network-button {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
     <div id="app">
-      <appkit-button></appkit-button>
-      <appkit-network-button></appkit-network-button>
+        <appkit-button></appkit-button>
+        <appkit-network-button></appkit-network-button>
     </div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+    <!-- CDN Scripts -->
+    <script src="https://unpkg.com/@reown/appkit@1.0.0-beta.2/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+
+    <!-- Link to main.js -->
+    <script src="main.js"></script>
+</body>
 </html>
