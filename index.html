@@ -13,6 +13,8 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            flex-direction: column;
+            gap: 20px;
         }
         button {
             padding: 10px 20px;
@@ -29,66 +31,15 @@
     </style>
 </head>
 <body>
-    <!-- Button to trigger wallet connection -->
-    <button id="connectButton">Connect Wallet</button>
+    <button id="open-connect-modal">Connect Wallet</button>
+    <button id="open-network-modal">Switch Network</button>
 
-    <!-- Load AppKit, Ethers adapter, and Ethers v5 -->
-    <script src="https://unpkg.com/@reown/appkit@latest/dist/index.umd.js"></script>
-    <script src="https://unpkg.com/@reown/appkit-adapter-ethers5@latest/dist/index.umd.js"></script>
-    <script src="https://unpkg.com/ethers@5/dist/ethers.umd.min.js"></script>
+    <!-- CDN Scripts -->
+    <script src="https://unpkg.com/@reown/appkit@1.0.0-beta.2/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/wagmi@2.12.10/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/viem@2.21.19/dist/index.umd.js"></script>
 
-    <script>
-        // 1. Use your provided projectId
-        const projectId = 'd708272626c65a90e5261aa6006da4c1';
-
-        // 2. Define networks (Arbitrum and Mainnet)
-        const networks = [
-            ReownAppKit.networks.arbitrum,
-            ReownAppKit.networks.mainnet
-        ];
-
-        // 3. Metadata with your GitHub Pages URL
-        const metadata = {
-            name: 'Doji',
-            description: 'AppKit Example',
-            url: 'https://wolfe1104.github.io/Dojiwon/index.html', // Updated to your URL with index.html
-            icons: ['https://assets.reown.com/reown-profile-pic.png']
-        };
-
-        // 4. Initialize AppKit with your projectId
-        const appKit = ReownAppKit.createAppKit({
-            adapters: [new ReownAppKitAdapterEthers5.Ethers5Adapter()],
-            networks,
-            metadata,
-            projectId: projectId,
-            features: {
-                analytics: true // Optional
-            }
-        });
-
-        // 5. Connect button functionality
-        const connectButton = document.getElementById('connectButton');
-        connectButton.addEventListener('click', async () => {
-            try {
-                await appKit.open(); // Opens the wallet modal
-                console.log('Wallet connection initiated');
-            } catch (error) {
-                console.error('Failed to connect wallet:', error);
-                alert('Connection failed. Check console for details.');
-            }
-        });
-
-        // 6. Listen for successful connection
-        appKit.on('connect', (event) => {
-            console.log('Wallet connected:', event);
-            alert('Wallet connected successfully!');
-        });
-
-        // Optional: Handle disconnection
-        appKit.on('disconnect', () => {
-            console.log('Wallet disconnected');
-            alert('Wallet disconnected');
-        });
-    </script>
+    <!-- Link to main.js -->
+    <script src="main.js"></script>
 </body>
 </html>
