@@ -11,7 +11,7 @@ const networks = [
 const metadata = {
     name: 'Doji',
     description: 'AppKit Example',
-    url: 'https://wolfe1104.github.io/Dojiwon/',
+    url: 'https://wolfe1104.github.io/Dojiwon/index.html',
     icons: ['https://avatars.githubusercontent.com/u/179229932']
 };
 
