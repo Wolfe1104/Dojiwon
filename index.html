@@ -16,28 +16,20 @@
             flex-direction: column;
             gap: 20px;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
+        appkit-button, appkit-network-button {
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <button id="open-connect-modal">Connect Wallet</button>
-    <button id="open-network-modal">Switch Network</button>
+    <div id="app">
+        <appkit-button></appkit-button>
+        <appkit-network-button></appkit-network-button>
+    </div>
 
     <!-- CDN Scripts -->
     <script src="https://unpkg.com/@reown/appkit@1.0.0-beta.2/dist/index.umd.js"></script>
-    <script src="https://unpkg.com/wagmi@2.12.10/dist/index.umd.js"></script>
-    <script src="https://unpkg.com/viem@2.21.19/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/ethers@6.13.2/dist/ethers.umd.min.js"></script>
 
     <!-- Link to main.js -->
     <script src="main.js"></script>
