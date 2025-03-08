@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet Connect with AppKit</title>
+    <title>Wallet Connect with AppKit - Dojiwon</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,17 +41,17 @@
         // 1. Use your provided projectId
         const projectId = 'd708272626c65a90e5261aa6006da4c1';
 
-        // 2. Define networks (Arbitrum and Mainnet from your code)
+        // 2. Define networks (Arbitrum and Mainnet)
         const networks = [
             ReownAppKit.networks.arbitrum,
             ReownAppKit.networks.mainnet
         ];
 
-        // 3. Metadata for your app
+        // 3. Metadata with your GitHub Pages URL
         const metadata = {
             name: 'Doji',
             description: 'AppKit Example',
-            url: 'https://<your-username>.github.io/<repo-name>', // Replace with your GitHub Pages URL
+            url: 'https://wolfe1104.github.io/Dojiwon/index.html', // Updated to your URL with index.html
             icons: ['https://assets.reown.com/reown-profile-pic.png']
         };
 
@@ -60,9 +60,9 @@
             adapters: [new ReownAppKitAdapterEthers5.Ethers5Adapter()],
             networks,
             metadata,
-            projectId: projectId, // Explicitly using your projectId
+            projectId: projectId,
             features: {
-                analytics: true // Optional, as per your original code
+                analytics: true // Optional
             }
         });
 
