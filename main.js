@@ -5,7 +5,7 @@ const projectId = 'd708272626c65a90e5261aa6006da4c1';
 const metadata = {
     name: 'Doji',
     description: 'AppKit Example',
-    url: 'https://wolfe1104.github.io/Dojiwon/', // Updated to your GitHub Pages URL
+    url: 'https://wolfe1104.github.io/Dojiwon/',
     icons: ['https://avatars.githubusercontent.com/u/179229932']
 };
 
